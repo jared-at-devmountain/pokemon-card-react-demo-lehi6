@@ -9,14 +9,20 @@ function App() {
 
   const [pokemonList, setPokemonList] = useState(theList)
 
+  function handleClick() {
+    setPokemonList([...pokemonList, 'Mewtwo'])
+  }
+
   return (
     <div>
       <h1>Here are some pokemon!</h1>
-      { 
+      {
         pokemonList.map((element, index, array) => {
           return <Card pokemon={element}/>
         })
       }
+      <input></input>
+      <button onClick={handleClick}>Add pokemon</button>
     </div>
   )
 }
