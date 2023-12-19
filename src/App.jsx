@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import axios from 'axios'
 import Card from './Card.jsx'
 import './App.css'
 
@@ -23,10 +24,24 @@ function App() {
     setType(event.target.value)
   }
 
+  function formSubmitListener(event) {
+    event.preventDefault()
+
+    axios.get(`https://pokeapi.co/api/v2/type/${type}`)
+    .then((response) => {
+      //wow! successfully logs a pokemon! The first of it's type!
+      console.log(response.data.pokemon[0].pokemon.name)
+    })
+    .catch((error) => {
+      console.log('that was a very bad song, johnny!')
+      console.log(error)
+    })
+  }
+
   return (
     <div>
       <h1>Here are some pokemon!</h1>
-      <form>
+      <form onSubmit={formSubmitListener}>
         <label htmlFor="limit-input">Limit</label>
         <input id="limit-input" value={limit} onChange={handleLimitChange}/>
         <label htmlFor="type-input">Type</label>
