@@ -1,7 +1,8 @@
-function Card() {
+function Card(props) {
+
     return (
         <div>
-            Pikachu
+            {props.pokemon}
         </div>
     )
 }
