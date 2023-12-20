@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import axios from 'axios'
 import Card from './Card.jsx'
 import './App.css'
@@ -6,8 +6,12 @@ import './App.css'
 function App() {
 
   const [pokemonList, setPokemonList] = useState([])
-  const [limit, setLimit] = useState('6')
+  const [limit, setLimit] = useState('2')
   const [type, setType] = useState('electric')
+
+  useEffect(() => {
+    doApiCall()
+  }, [])
 
   function handleLimitChange(event) {
     setLimit(event.target.value)
@@ -20,6 +24,10 @@ function App() {
   function formSubmitListener(event) {
     event.preventDefault()
 
+    doApiCall()
+  }
+
+  function doApiCall() {
     axios.get(`https://pokeapi.co/api/v2/type/${type}`)
     .then((response) => {
 
