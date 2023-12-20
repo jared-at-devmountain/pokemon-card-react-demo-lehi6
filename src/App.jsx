@@ -3,12 +3,9 @@ import axios from 'axios'
 import Card from './Card.jsx'
 import './App.css'
 
-//we are going to pretend that this is data we got from an API
-const theList = ['raichu', 'voltorb', 'Rhydon']
-
 function App() {
 
-  const [pokemonList, setPokemonList] = useState(theList)
+  const [pokemonList, setPokemonList] = useState([])
   const [limit, setLimit] = useState('6')
   const [type, setType] = useState('electric')
 
@@ -39,10 +36,10 @@ function App() {
       if (+limit > 0) {
         //if the user puts in a valid limit input in the form, then make the array -limit- long
         let newPokemonArray = prettyPokemonStringArray.slice(0, +limit)
-        console.log(newPokemonArray)
+        setPokemonList(newPokemonArray)
       } else {
         //if the user puts in an invalid limit, then make the array empty
-        console.log([])
+        setPokemonList([])
       }
     })
     .catch((error) => {
