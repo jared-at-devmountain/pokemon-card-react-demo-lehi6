@@ -9,10 +9,6 @@ function App() {
   const [limit, setLimit] = useState('6')
   const [type, setType] = useState('electric')
 
-  function handleClick() {
-    setPokemonList([...pokemonList, 'Mewtwo'])
-  }
-
   function handleLimitChange(event) {
     setLimit(event.target.value)
   }
@@ -63,8 +59,6 @@ function App() {
           return <Card pokemon={element}/>
         })
       }
-      <input></input>
-      <button onClick={handleClick}>Add pokemon</button>
     </div>
   )
 }
